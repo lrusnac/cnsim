@@ -19,5 +19,8 @@ public class App {
         d.addNeighbour(c);
 
         System.out.println("Network created");
+        a.requestResource(d, new Resource(), 100);
+
+        System.out.println("Program fineshed");
     }
 }
