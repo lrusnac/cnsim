@@ -5,3 +5,7 @@
 log/
 target/
 cnsim/dependency-reduced-pom.xml
+
+# Vim swap
+*.swp
+*.spo

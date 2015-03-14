@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class Router{
     private List<Router> neighbours;
+    private List<Server> servers;
+    private List<Client> clients;
     private int cacheDim; //in Mbyte
     private Map<Resource, Description> cache;
     private String name;
@@ -18,12 +20,25 @@ public class Router{
     public Router(String name){
         this.name = name;
         this.neighbours = new ArrayList<Router>();
+        this.servers = new ArrayList<Server>();
+        this.clients = new ArrayList<Client>();
         this.cache = new HashMap<Resource, Description>();
         this.r = new Random();
     }
 
     public void addNeighbour(Router r){
         this.neighbours.add(r);
+        r.neighbours.add(this);
+    }
+
+    public void addServer(Server s){
+        this.servers.add(s);
+        s.addRouter(this);
+    }
+
+    public void addClient(Client c){
+        this.clients.add(c);
+        c.addRouter(this);
     }
 
     public boolean requestResource(Router source, Resource res, long time){
@@ -32,7 +47,6 @@ public class Router{
             System.out.println(this + " I'm the source router");
             return true; //TO-DO
         }
-        
         
         /*if(this.cache.get(res).useResource(time)){
             System.out.println(this + " Resource present in the cache");
