@@ -1,12 +1,13 @@
 package me.bedifferent.cnsim;
 
-import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Network{
     private Router[] r;
     private Client[] c;
     private Server[] s;
-    private Map<Resource, Description> memory;
+    private List<Resource> memory;
     
     public Network(){
         //costruttore che mi crea la network di router
@@ -35,6 +36,8 @@ public class Network{
 
         r[0].addServer(s[0]);
         r[3].addServer(s[1]);
+
+        this.memory = new ArrayList<Resource>();
     }
 
     public Client getClient(){
@@ -45,7 +48,15 @@ public class Network{
         return s[1];
     }
 
-    public void setMemory(Map<Resource, Description> mem){
+    public void setMemory(List<Resource> mem){
         this.memory = mem;
+    }
+
+    public Resource getResByName(String name){
+        for(Resource r : this.memory){
+            if(r.getName().equals(name))
+                return r;
+        }
+        return null;
     }
 }

@@ -5,7 +5,7 @@ public class App {
         Network n = new Network();
         System.out.println("Network created");
         
-        n.getClient().requestResource(n.getServer(), new Resource("prova", 23), 100);
+        n.getClient().requestResource(n.getServer(), n.getResByName("prova"), 100);
         
         System.out.println("Program fineshed");
     }

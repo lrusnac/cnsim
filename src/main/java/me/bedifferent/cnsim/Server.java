@@ -19,4 +19,11 @@ public class Server{
     public void addRouter(Router r){
         this.routers.add(r);
     }
+
+    public Router getRouter(){
+        if(this.routers.size() > 0){
+            return this.routers.get(0);
+        }
+        return null;
+    }
 }
