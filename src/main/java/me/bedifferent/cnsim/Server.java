@@ -8,24 +8,24 @@ public class Server{
     
     private List<Resource> memory;
     private List<Router> routers;
-        private String name;
+    private String name;
 
-        public Server(String name){
-            this.memory = new ArrayList<Resource>();
-            this.routers = new ArrayList<Router>();
-            this.name = name;
-        }
+    public Server(String name){
+        this.memory = new ArrayList<Resource>();
+        this.routers = new ArrayList<Router>();
+        this.name = name;
+    }
 
-        public void addRouter(Router r){
-            this.routers.add(r);
-        }
+    public void addRouter(Router r){
+        this.routers.add(r);
+    }
 
-        public Router getRouter(){
-            if(this.routers.size() > 0){
-                return this.routers.get(0);
-            }
-            return null;
+    public Router getRouter(){
+        if(this.routers.size() > 0){
+            return this.routers.get(0);
         }
+        return null;
+    }
         
     public Resource getRandomResource(int x){
         return memory.get(x % this.memory.size());
