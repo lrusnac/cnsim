@@ -25,6 +25,7 @@ public class DataCollector{
     }
 
     public void flush(){
-    
+        for(Collector c : this.collectors)
+            c.clear();
     }
 }

@@ -50,6 +50,11 @@ public class Network{
 
     public void setMemory(List<Resource> mem){
         this.memory = mem;
+
+        for(int i=0; i<r.length; i++)
+            r[i].setCache(mem);
+        for(int i=0; i<s.length; i++)
+            s[i].setMemory(mem);
     }
 
     public Resource getResByName(String name){
@@ -58,5 +63,16 @@ public class Network{
                 return r;
         }
         return null;
+    }
+
+    public void setDataCollector(DataCollector dc){
+        for(int i=0; i<this.r.length; i++)
+            this.r[i].setDataCollector(dc);
+    }
+
+    public void clearCache(){
+        //clean the cache of the routers
+        for(int i=0; i<r.length; i++)
+            r[i].resetCache();
     }
 }

@@ -16,6 +16,7 @@ public class Router{
     private Map<Resource, Description> cache;
     private String name;
     private Random r;
+    private DataCollector datacollector;
 
     public Router(String name){
         this.name = name;
@@ -24,6 +25,7 @@ public class Router{
         this.clients = new ArrayList<Client>();
         this.cache = new HashMap<Resource, Description>();
         this.r = new Random();
+        this.datacollector = null;
     }
 
     public void addNeighbour(Router r){
@@ -73,5 +75,21 @@ public class Router{
 
     public String toString(){
         return "Router: " + this.name;
+    }
+
+    public void setDataCollector(DataCollector dc){
+        this.datacollector = dc;
+    }
+
+    public void setCache(List<Resource> cache){
+        for(Resource res:cache){
+            this.cache.put(res, new Description());
+        }
+    }
+
+    public void resetCache(){
+        for(Resource res : this.cache.keySet()){
+            this.cache.put(res, new Description());
+        }
     }
 }

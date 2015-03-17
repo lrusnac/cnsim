@@ -17,6 +17,10 @@ public class Client{
     }
 
     public void requestResource(Server source, Resource res, long time){
+        this.requestResource(source.getRouter(), res, time);
+    }
+    
+    public void requestResource(Router source, Resource res, long time){
         //routers.get(0).requestResource()
     }
 }
