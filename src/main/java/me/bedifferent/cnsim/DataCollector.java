@@ -11,9 +11,9 @@ public class DataCollector{
         this.collectors = new ArrayList<Collector>();
     }
 
-    public void pushData(){ // TO-DO
+    public void pushData(Event data){ // TO-DO
         for(Collector c : this.collectors)
-            c.onEvent();
+            c.onEvent(data);
     }
 
     public Map<String, String> popData(){

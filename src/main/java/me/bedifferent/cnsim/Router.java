@@ -15,7 +15,6 @@ public class Router{
     private int cacheDim; //in Mbyte
     private Map<Resource, Description> cache;
     private String name;
-    private Random r;
     private DataCollector datacollector;
 
     public Router(String name){
@@ -24,7 +23,6 @@ public class Router{
         this.servers = new ArrayList<Server>();
         this.clients = new ArrayList<Client>();
         this.cache = new HashMap<Resource, Description>();
-        this.r = new Random();
         this.datacollector = null;
     }
 
@@ -43,7 +41,7 @@ public class Router{
         c.addRouter(this);
     }
 
-    public boolean requestResource(Router source, Resource res, long time){
+    public boolean requestResource(Router source, Resource res, long time, Random r){
         //get a resource from a net
         if(this.equals(source)){
             System.out.println(this + " I'm the source router");
@@ -58,10 +56,10 @@ public class Router{
             // if I have the source router as neighbour then take the
             // resource from him directlly
             if(this.neighbours.contains(source)){
-                return source.requestResource(source, res, time);
+                return source.requestResource(source, res, time, r);
             } else {
-                int req = this.r.nextInt(this.neighbours.size());
-                return this.neighbours.get(req).requestResource(source, res, time);
+                int req = r.nextInt(this.neighbours.size());
+                return this.neighbours.get(req).requestResource(source, res, time, r);
             }
         //}
     }

@@ -11,7 +11,7 @@ public abstract class Collector{
 
     public abstract Map<String, Double> getValue();
 
-    public abstract void onEvent();
+    public abstract void onEvent(Event data);
     public abstract void clear(); 
     public String getName(){
         return this.name;

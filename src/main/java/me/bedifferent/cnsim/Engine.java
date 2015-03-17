@@ -30,6 +30,7 @@ public class Engine{
             n.clearCache(); // clear the cache of the routers
             
             Random rand = new Random(s);
+            int time = 0; // reset the time of every experiment
 
             // I'm doing this for speed up the loop, but you can make
             // requests on various clients and servers too.
@@ -41,9 +42,11 @@ public class Engine{
                 //get a random resource
                 Resource temp = server.getRandomResource(rand.nextInt(32000));
                 //make a request
-                c.requestResource(source, temp, 100);
+                c.requestResource(source, temp, time, rand);
                 //register result to datacol
                 //blah blah blah
+                
+                time = time + 1; // increment the simulation time
                 break;
             }
             
