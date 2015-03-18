@@ -25,9 +25,12 @@ public class ResourceFactory{
 
     public List<Resource> getResourcesFromFile(String filepath){
         List<Resource> result = new ArrayList<Resource>();
-        result.add(new Resource("Prova1", 1024));
-        result.add(new Resource("Prova2", 1024));
-        //result.add(new Resource("Prova3", 1024));
+        result.add(new Resource("Prova1", 780));
+        result.add(new Resource("Prova2", 780));
+        result.add(new Resource("Prova3", 780));
+        result.add(new Resource("Prova4", 780));
+        result.add(new Resource("Prova5", 780));
+        result.add(new Resource("Prova6", 780));
         
         return result;
     }

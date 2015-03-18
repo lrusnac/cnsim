@@ -28,7 +28,7 @@ public class Router{
         this.cache = new HashMap<Resource, Description>();
         this.datacollector = null;
         this.usedCache = 0;
-        this.cacheStrategy = new LRU();
+        this.cacheStrategy = new FIFO();
     }
 
     public void addNeighbour(Router r){
@@ -65,7 +65,7 @@ public class Router{
                     this.neighbours.get(req).requestResource(source, res, time, r);
                 }
             }
-            System.out.println("Make available: "+this+" res: "+res+" at "+time);
+            //System.out.println("Make available: "+this+" res: "+res+" at "+time);
             cacheStrategy.makeAvailable(this, res, time);
         }
 
