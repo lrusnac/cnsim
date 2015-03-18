@@ -38,7 +38,7 @@ public class Engine{
             Server server = n.getServer();
             Router source = server.getRouter();
 
-            while(true){
+            while(time < 10){
                 //get a random resource
                 Resource temp = server.getRandomResource(rand.nextInt(32000));
                 //make a request
@@ -47,7 +47,7 @@ public class Engine{
                 //blah blah blah
                 
                 time = time + 1; // increment the simulation time
-                break;
+                //break;
             }
             
             rescol.aggregateData(datacol);

@@ -12,18 +12,23 @@ public class Router{
     private List<Router> neighbours;
     private List<Server> servers;
     private List<Client> clients;
-    private int cacheDim; //in Mbyte
+    private long cacheDim; //in Mbyte
+    private long usedCache;
     private Map<Resource, Description> cache;
     private String name;
     private DataCollector datacollector;
+    private ICache cacheStrategy;
 
-    public Router(String name){
+    public Router(String name, long cacheDim){
         this.name = name;
+        this.cacheDim = cacheDim;
         this.neighbours = new ArrayList<Router>();
         this.servers = new ArrayList<Server>();
         this.clients = new ArrayList<Client>();
         this.cache = new HashMap<Resource, Description>();
         this.datacollector = null;
+        this.usedCache = 0;
+        this.cacheStrategy = new LRU();
     }
 
     public void addNeighbour(Router r){
@@ -41,27 +46,28 @@ public class Router{
         c.addRouter(this);
     }
 
-    public boolean requestResource(Router source, Resource res, long time, Random r){
-        //get a resource from a net
-        if(this.equals(source)){
-            System.out.println(this + " I'm the source router");
-            return true; //TO-DO
-        }
-        
-        /*if(this.cache.get(res).useResource(time)){
+    public void requestResource(Router source, Resource res, long time, Random r){
+        if(this.cache.get(res).useResource(time)){
             System.out.println(this + " Resource present in the cache");
-            return true;
-        }else{*/
+            datacollector.pushData(new Event(Event.Type.HIT));
+        }else{
             System.out.println(this + " Resource is not present");
+            datacollector.pushData(new Event(Event.Type.MISS));
             // if I have the source router as neighbour then take the
             // resource from him directlly
-            if(this.neighbours.contains(source)){
-                return source.requestResource(source, res, time, r);
-            } else {
-                int req = r.nextInt(this.neighbours.size());
-                return this.neighbours.get(req).requestResource(source, res, time, r);
+            if(this.equals(source)){
+                System.out.println(this + " I'm the source router");
+            }else{
+                if(this.neighbours.contains(source)){
+                    source.requestResource(source, res, time, r);
+                } else {
+                    int req = r.nextInt(this.neighbours.size());
+                    this.neighbours.get(req).requestResource(source, res, time, r);
+                }
             }
-        //}
+            cacheStrategy.makeAvailable(this, res);
+            //this.cache.get(res).setAvailable(true, time);
+        }
     }
 
     public boolean equals(Object o){
@@ -89,5 +95,21 @@ public class Router{
         for(Resource res : this.cache.keySet()){
             this.cache.put(res, new Description());
         }
+    }
+
+    public Map<Resource, Description> getCache(){
+        return this.cache;
+    }
+
+    public long getCacheDim(){
+        return this.cacheDim;
+    }
+
+    public long getUsedCache(){
+        return this.usedCache;
+    }
+
+    public void setUsedCache(long usedCache){
+        this.usedCache = usedCache;
     }
 }

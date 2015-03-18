@@ -12,9 +12,9 @@ public class Description{
     }
 
     public void setAvailable(boolean available, long time){
-        if(!this.available && available){
+        //if(!this.available && available){
             this.arrivedTime = time;
-        }
+        //}
         this.available = available;
     }
 

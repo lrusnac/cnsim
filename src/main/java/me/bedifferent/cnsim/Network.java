@@ -14,10 +14,10 @@ public class Network{
         r = new Router[4];
         c = new Client[2];
         s = new Server[2];
-        r[0] = new Router("R1");
-        r[1] = new Router("R2");
-        r[2] = new Router("R3");
-        r[3] = new Router("R4");
+        r[0] = new Router("R1", 1000000);
+        r[1] = new Router("R2", 1000000);
+        r[2] = new Router("R3", 1000000);
+        r[3] = new Router("R4", 1000000);
         
         r[0].addNeighbour(r[1]);
         r[0].addNeighbour(r[2]);
