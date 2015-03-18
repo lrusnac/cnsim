@@ -23,4 +23,8 @@ public class Resource{
     public int getDim(){
         return this.dim;
     }
+
+    public String toString(){
+        return this.name;
+    }
 }

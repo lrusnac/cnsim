@@ -48,10 +48,10 @@ public class Router{
 
     public void requestResource(Router source, Resource res, long time, Random r){
         if(this.cache.get(res).useResource(time)){
-            System.out.println(this + " Resource present in the cache");
+            System.out.println(this + " Resource: " + res + " present in the cache");
             datacollector.pushData(new Event(Event.Type.HIT));
         }else{
-            System.out.println(this + " Resource is not present");
+            System.out.println(this + " Resource: " + res + " is not present");
             datacollector.pushData(new Event(Event.Type.MISS));
             // if I have the source router as neighbour then take the
             // resource from him directlly
@@ -65,9 +65,16 @@ public class Router{
                     this.neighbours.get(req).requestResource(source, res, time, r);
                 }
             }
-            cacheStrategy.makeAvailable(this, res);
-            //this.cache.get(res).setAvailable(true, time);
+            System.out.println("Make available: "+this+" res: "+res+" at "+time);
+            cacheStrategy.makeAvailable(this, res, time);
         }
+
+        //System.out.println("-----------------------------");
+        //System.out.println(this);
+        //for(Resource re : this.cache.keySet()){
+        //    System.out.println(re + " "+this.cache.get(re).isAvailable());
+        //}
+        //System.out.println("-----------------------------");
     }
 
     public boolean equals(Object o){
