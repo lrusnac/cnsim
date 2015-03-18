@@ -7,8 +7,9 @@ public class Event{
     }
     private Type type;
 
-    public Event(Type type){
+    public Event(Type type, String description){
         this.type = type;
+        this.description = description;
     }
 
     public void setType(Type type){

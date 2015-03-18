@@ -1,6 +1,7 @@
 package me.bedifferent.cnsim;
 
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -16,8 +17,11 @@ public class DataCollector{
             c.onEvent(data);
     }
 
-    public Map<String, String> popData(){
-        return null;
+    public Map<String, Double> popData(){
+        Map<String, Double> result = new HashMap<String, Double>();
+        for(Collector c : this.collectors)
+            result.putAll(c.getValue());
+        return result;
     }
 
     public void registerCollector(Collector c){

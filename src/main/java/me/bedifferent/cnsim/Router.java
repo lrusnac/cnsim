@@ -17,42 +17,42 @@ public class Router{
     private Map<Resource, Description> cache;
     private String name;
     private DataCollector datacollector;
-    private ICache cacheStrategy;
+        private ICache cacheStrategy;
 
-    public Router(String name, long cacheDim){
-        this.name = name;
-        this.cacheDim = cacheDim;
-        this.neighbours = new ArrayList<Router>();
-        this.servers = new ArrayList<Server>();
-        this.clients = new ArrayList<Client>();
-        this.cache = new HashMap<Resource, Description>();
-        this.datacollector = null;
-        this.usedCache = 0;
-        this.cacheStrategy = new FIFO();
-    }
+        public Router(String name, ICache cacheStrategy, long cacheDim){
+            this.name = name;
+            this.cacheDim = cacheDim;
+            this.neighbours = new ArrayList<Router>();
+            this.servers = new ArrayList<Server>();
+            this.clients = new ArrayList<Client>();
+            this.cache = new HashMap<Resource, Description>();
+            this.datacollector = null;
+            this.usedCache = 0;
+            this.cacheStrategy = cacheStrategy;
+        }
 
-    public void addNeighbour(Router r){
-        this.neighbours.add(r);
-        r.neighbours.add(this);
-    }
+        public void addNeighbour(Router r){
+            this.neighbours.add(r);
+            r.neighbours.add(this);
+        }
 
-    public void addServer(Server s){
-        this.servers.add(s);
-        s.addRouter(this);
-    }
+        public void addServer(Server s){
+            this.servers.add(s);
+            s.addRouter(this);
+        }
 
-    public void addClient(Client c){
-        this.clients.add(c);
-        c.addRouter(this);
-    }
+        public void addClient(Client c){
+            this.clients.add(c);
+            c.addRouter(this);
+        }
 
-    public void requestResource(Router source, Resource res, long time, Random r){
-        if(this.cache.get(res).useResource(time)){
-            System.out.println(this + " Resource: " + res + " present in the cache");
-            datacollector.pushData(new Event(Event.Type.HIT));
-        }else{
-            System.out.println(this + " Resource: " + res + " is not present");
-            datacollector.pushData(new Event(Event.Type.MISS));
+        public void requestResource(Router source, Resource res, long time, Random r){
+            if(this.cache.get(res).useResource(time)){
+                System.out.println(this + " Resource: " + res + " present in the cache");
+                datacollector.pushData(new Event(Event.Type.HIT, this.toString()));
+            }else{
+                System.out.println(this + " Resource: " + res + " is not present");
+                datacollector.pushData(new Event(Event.Type.MISS, this.toString()));
             // if I have the source router as neighbour then take the
             // resource from him directlly
             if(this.equals(source)){

@@ -50,7 +50,7 @@ public class Engine{
                 //break;
             }
             
-            rescol.aggregateData(datacol);
+            rescol.aggregateData(datacol.popData());
 
             s = rand.nextInt(32000);
         }
