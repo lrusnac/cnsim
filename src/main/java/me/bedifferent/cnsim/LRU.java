@@ -19,6 +19,11 @@ public class LRU implements ICache{
                         smallest = res;
                     }
                 }
+                if(smallest == null){
+                    for(Resource res:cache.keySet()){
+                        System.out.println(res.toString()+cache.get(res).isAvailable());
+                    } 
+                }
                 toFree -= smallest.getDim();
                 router.setUsedCache(router.getUsedCache() - smallest.getDim());
                 //System.out.println("making false"+smallest+" "+toFree);

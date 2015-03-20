@@ -3,7 +3,7 @@ package me.bedifferent.cnsim;
 public class Event{
     private String description;
     public static enum Type {
-        MISS, HIT
+        MISS, HIT, ANY
     }
     private Type type;
 

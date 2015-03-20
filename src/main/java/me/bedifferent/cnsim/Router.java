@@ -102,6 +102,7 @@ public class Router{
         for(Resource res : this.cache.keySet()){
             this.cache.put(res, new Description());
         }
+        this.usedCache = 0;
     }
 
     public Map<Resource, Description> getCache(){

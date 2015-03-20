@@ -10,6 +10,8 @@ public class DataCollector{
 
     public DataCollector(){
         this.collectors = new ArrayList<Collector>();
+        this.collectors.add(new ConcreteCollectorCounter(Event.Type.HIT));
+        this.collectors.add(new ConcreteCollectorCounter(Event.Type.MISS));
     }
 
     public void pushData(Event data){ // TO-DO
