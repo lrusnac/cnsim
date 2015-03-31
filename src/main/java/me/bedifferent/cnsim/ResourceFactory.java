@@ -25,6 +25,11 @@ public class ResourceFactory{
 
     public List<Resource> getResourcesFromFile(String filepath){
         List<Resource> result = new ArrayList<Resource>();
+        return result;
+    }
+
+    public List<Resource> getFakeResources(){
+        List<Resource> result = new ArrayList<Resource>();
         result.add(new Resource("Prova1", 780));
         result.add(new Resource("Prova2", 780));
         result.add(new Resource("Prova3", 780));
@@ -34,4 +39,5 @@ public class ResourceFactory{
         
         return result;
     }
+
 }

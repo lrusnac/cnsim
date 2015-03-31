@@ -14,7 +14,8 @@ public class Engine{
         
         // setup the memory
         ResourceFactory rf = ResourceFactory.getInstance();
-        n.setMemory(rf.getResourcesFromFile("~/resources.txt"));
+        //n.setMemory(rf.getResourcesFromFile("~/resources.txt"));
+        n.setMemory(rf.getFakeResources());
         datacol = new DataCollector();
         rescol = new ResultsCollector();
     }
