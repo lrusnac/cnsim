@@ -1,7 +1,7 @@
 package me.bedifferent.cnsim;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ConcreteCollectorCounter extends Collector{
     private Map<String, Double> collector;

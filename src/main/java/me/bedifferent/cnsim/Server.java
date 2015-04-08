@@ -1,7 +1,7 @@
 package me.bedifferent.cnsim;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Server{
     /* This class have the memory, it's connected to a router */

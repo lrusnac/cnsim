@@ -1,9 +1,9 @@
 package me.bedifferent.cnsim;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Map;
 
 public class ResultsCollector{
     private Map<String, List<Double>> result;

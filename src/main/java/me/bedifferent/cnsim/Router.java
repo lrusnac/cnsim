@@ -1,12 +1,6 @@
 package me.bedifferent.cnsim;
 
-import java.util.List;
-import java.util.Map;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import java.util.Random;
+import java.util.*;
 
 public class Router{
     private List<Router> neighbours;

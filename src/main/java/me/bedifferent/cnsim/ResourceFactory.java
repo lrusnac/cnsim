@@ -1,7 +1,7 @@
 package me.bedifferent.cnsim;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ResourceFactory{
     //This class generates the resources, simply because there are
@@ -30,12 +30,9 @@ public class ResourceFactory{
 
     public List<Resource> getFakeResources(){
         List<Resource> result = new ArrayList<Resource>();
-        result.add(new Resource("Prova1", 780));
-        result.add(new Resource("Prova2", 780));
-        result.add(new Resource("Prova3", 780));
-        result.add(new Resource("Prova4", 780));
-        result.add(new Resource("Prova5", 780));
-        result.add(new Resource("Prova6", 780));
+        for(int i=0; i<1000; i++){
+            result.add(new Resource("Res"+i, 10));
+        }
         
         return result;
     }

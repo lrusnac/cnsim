@@ -9,3 +9,7 @@ cnsim/dependency-reduced-pom.xml
 # Vim swap
 *.swp
 *.spo
+
+# JBrain
+.idea/
+*.iml
