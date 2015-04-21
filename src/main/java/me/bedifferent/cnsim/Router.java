@@ -42,15 +42,15 @@ public class Router{
 
         public void requestResource(Router source, Resource res, long time, Random r){
             if(this.cache.get(res).useResource(time)){
-                System.out.println(this + " Resource: " + res + " present in the cache");
+//                System.out.println(this + " Resource: " + res + " present in the cache");
                 datacollector.pushData(new Event(Event.Type.HIT, this.toString()));
             }else{
-                System.out.println(this + " Resource: " + res + " is not present");
+ //               System.out.println(this + " Resource: " + res + " is not present");
                 datacollector.pushData(new Event(Event.Type.MISS, this.toString()));
             // if I have the source router as neighbour then take the
             // resource from him directlly
             if(this.equals(source)){
-                System.out.println(this + " I'm the source router");
+  //              System.out.println(this + " I'm the source router");
             }else{
                 if(this.neighbours.contains(source)){
                     source.requestResource(source, res, time, r);
