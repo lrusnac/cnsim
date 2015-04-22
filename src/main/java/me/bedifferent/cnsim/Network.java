@@ -14,10 +14,10 @@ public class Network{
         r = new Router[4];
         c = new Client[2];
         s = new Server[2];
-        r[0] = new Router("R1", new LRU(), 999);
-        r[1] = new Router("R2", new LRU(), 999);
-        r[2] = new Router("R3", new LRU(), 999);
-        r[3] = new Router("R4", new LRU(), 999);
+        r[0] = new Router("R1", new FIFO(), 999);
+        r[1] = new Router("R2", new FIFO(), 999);
+        r[2] = new Router("R3", new FIFO(), 999);
+        r[3] = new Router("R4", new FIFO(), 999);
         
         r[0].addNeighbour(r[1]);
         r[0].addNeighbour(r[2]);

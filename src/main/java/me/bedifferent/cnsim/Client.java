@@ -1,7 +1,5 @@
 package me.bedifferent.cnsim;
 
-import java.util.Random;
-
 public class Client{
     private String name;
     private Router router;
@@ -14,11 +12,11 @@ public class Client{
         this.router = r;
     }
 
-    public void requestResource(Server source, Resource res, long time, Random r){
+    public void requestResource(Server source, Resource res, long time, RngStream r){
         this.requestResource(source.getRouter(), res, time, r);
     }
     
-    public void requestResource(Router source, Resource res, long time, Random r){
+    public void requestResource(Router source, Resource res, long time, RngStream r){
         if(router == null){
             System.out.println("The client is not connected to a router");
         }else{

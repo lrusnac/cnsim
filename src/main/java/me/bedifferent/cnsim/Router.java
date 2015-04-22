@@ -40,7 +40,7 @@ public class Router{
             c.addRouter(this);
         }
 
-        public void requestResource(Router source, Resource res, long time, Random r){
+        public void requestResource(Router source, Resource res, long time, RngStream r){
             if(this.cache.get(res).useResource(time)){
 //                System.out.println(this + " Resource: " + res + " present in the cache");
                 datacollector.pushData(new Event(Event.Type.HIT, this.toString()));
@@ -55,7 +55,7 @@ public class Router{
                 if(this.neighbours.contains(source)){
                     source.requestResource(source, res, time, r);
                 } else {
-                    int req = r.nextInt(this.neighbours.size());
+                    int req = r.randInt(0, this.neighbours.size()-1);
                     this.neighbours.get(req).requestResource(source, res, time, r);
                 }
             }
