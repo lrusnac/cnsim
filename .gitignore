@@ -13,3 +13,5 @@ cnsim/dependency-reduced-pom.xml
 # JBrain
 .idea/
 *.iml
+.classpath
+.project
