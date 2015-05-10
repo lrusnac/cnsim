@@ -6,7 +6,7 @@ import java.io.InputStream;
 public class App {
     public static void main( String[] args ) throws Exception{
         Engine e = new Engine();
-        e.run(10, 123456);
+        e.run(2, 11111);
         // n.getClient().requestResource(n.getServer(), n.getResByName("prova"), 100);
         
         // testing properties

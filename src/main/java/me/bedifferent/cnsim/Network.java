@@ -20,8 +20,8 @@ public class Network{
         r[3] = new Router("R4", new LRU(), 999);
         
         r[0].addNeighbour(r[1]);
-        r[0].addNeighbour(r[2]);
-        r[1].addNeighbour(r[3]);
+        //r[0].addNeighbour(r[2]);
+        //r[1].addNeighbour(r[3]);
         r[1].addNeighbour(r[2]);
         r[2].addNeighbour(r[3]);
 

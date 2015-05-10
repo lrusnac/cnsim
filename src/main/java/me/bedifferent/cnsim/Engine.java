@@ -14,7 +14,7 @@ public class Engine{
         
         Random r = new Random(s);
         int seeds[] = new int[x];
-        for(int i=0; i<x; seeds[i++] = r.nextInt());
+        for(int i=0; i<x; seeds[i++] = r.nextInt(10000));
 
         Thread threads[] = new Thread[x];
         try{

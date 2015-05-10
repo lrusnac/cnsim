@@ -1,7 +1,5 @@
 package me.bedifferent.cnsim;
 
-import java.util.Random;
-
 public class Experiment extends Thread{
     private int seed = 0;
     private ResultsCollector rescol;
@@ -14,7 +12,10 @@ public class Experiment extends Thread{
     public void run(){
         DataCollector dataCollector = new DataCollector();
         Network network = new Network();
-        Random rand = new Random(seed);
+        //Random rand = new Random(seed);
+        RngStream rand = new RngStream();
+        rand.setSeed(new long[]{seed, 12345, 12345, 12345, 12345, 12345});
+        
 
         System.out.println("Network created");
         
@@ -28,11 +29,13 @@ public class Experiment extends Thread{
         Server server = network.getServer();
         Router source = server.getRouter();
 
+        Zipfian zipfian = new Zipfian(0.85, 1000);
+        
         long time = 0;
 
-        while(time < 100000){ // later based on data from dataCollector
+        while(time < 500000){ // later based on data from dataCollector
             //get a random resource
-            Resource temp = server.getRandomResource(rand.nextInt(32000));
+            Resource temp = server.getRandomResource(zipfian.next(rand.randU01()));
             //make a request
             c.requestResource(source, temp, time, rand);
             //register result to datacol
