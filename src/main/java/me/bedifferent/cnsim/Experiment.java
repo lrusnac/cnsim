@@ -15,7 +15,6 @@ public class Experiment extends Thread{
         //Random rand = new Random(seed);
         RngStream rand = new RngStream();
         rand.setSeed(new long[]{seed, 12345, 12345, 12345, 12345, 12345});
-        
 
         System.out.println("Network created");
         

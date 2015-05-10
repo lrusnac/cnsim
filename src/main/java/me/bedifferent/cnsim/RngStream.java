@@ -1,5 +1,3 @@
-//package me.bedifferent.cnsim;
-
 /**
  * Title:          RngStream.java
  * Description:    Multiple Streams and Substreams of Random Numbers
