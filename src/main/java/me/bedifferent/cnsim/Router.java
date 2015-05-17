@@ -27,7 +27,7 @@ public class Router{
 
         public void addNeighbour(Router r){
             this.neighbours.add(r);
-            r.neighbours.add(this);
+            //r.neighbours.add(this);
         }
 
         public void addServer(Server s){
@@ -43,12 +43,10 @@ public class Router{
         public void requestResource(Router source, Resource res, long time, RngStream r){
             if(this.cache.get(res).useResource(time)){
 //                System.out.println(this + " Resource: " + res + " present in the cache");
-            	if(res.getName().equals("Res99"))
-            		datacollector.pushData(new Event(Event.Type.HIT, this.toString()));
+                datacollector.pushData(new Event(Event.Type.HIT, res, this.toString()));
             }else{
  //               System.out.println(this + " Resource: " + res + " is not present");
-            	if(res.getName().equals("Res99"))
-            		datacollector.pushData(new Event(Event.Type.MISS, this.toString()));
+                datacollector.pushData(new Event(Event.Type.MISS, res, this.toString()));
             // if I have the source router as neighbour then take the
             // resource from him directlly
             if(this.equals(source)){

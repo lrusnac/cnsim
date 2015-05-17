@@ -6,10 +6,12 @@ public class Event{
         MISS, HIT, ANY
     }
     private Type type;
+    private Resource resource;
 
-    public Event(Type type, String description){
+    public Event(Type type, Resource res, String description){
         this.type = type;
         this.description = description;
+        this.resource = res;
     }
 
     public void setType(Type type){
@@ -27,4 +29,8 @@ public class Event{
     public String getDescription(){
         return this.description;
     }
+
+    public Resource getResource() {return this.resource;}
+
+    public void setResource(Resource resource) {this.resource = resource;}
 }

@@ -10,8 +10,13 @@ public class DataCollector{
 
     public DataCollector(){
         this.collectors = new ArrayList<Collector>();
-        this.collectors.add(new ConcreteCollectorCounter(Event.Type.HIT));
-        this.collectors.add(new ConcreteCollectorCounter(Event.Type.MISS));
+        //this.collectors.add(new ConcreteCollectorCounter(Event.Type.HIT));
+        //this.collectors.add(new ConcreteCollectorCounter(Event.Type.MISS));
+
+        this.collectors.add(new ConcreteCollectorHitrate("Res0"));
+        this.collectors.add(new ConcreteCollectorHitrate("Res9"));
+        this.collectors.add(new ConcreteCollectorHitrate("Res99"));
+        this.collectors.add(new ConcreteCollectorHitrate("Res999"));
     }
 
     public void pushData(Event data){ // TO-DO

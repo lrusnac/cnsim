@@ -32,7 +32,7 @@ public class Experiment extends Thread{
         
         long time = 0;
 
-        while(time < 500000){ // later based on data from dataCollector
+        while(time < 1000000){ // later based on data from dataCollector
             //get a random resource
             Resource temp = server.getRandomResource(zipfian.next(rand.randU01()));
             //make a request
