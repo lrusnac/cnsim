@@ -8,7 +8,7 @@ public class ResourceFactory{
     //several ways to create and save the resources, for instance from
     //file or from a database, or even random generated resources
     
-        private static ResourceFactory instance;
+    private static ResourceFactory instance;
     
     private ResourceFactory(){
         //it is a singleton class so has a private costructor, I need
