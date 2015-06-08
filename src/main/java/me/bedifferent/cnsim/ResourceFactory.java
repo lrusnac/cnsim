@@ -28,10 +28,10 @@ public class ResourceFactory{
         return result;
     }
 
-    public List<Resource> getFakeResources(){
+    public List<Resource> getFakeResources(int number, int dimension){
         List<Resource> result = new ArrayList<Resource>();
-        for(int i=0; i<1000; i++){
-            result.add(new Resource("Res"+i, 10));
+        for(int i=0; i<number; i++){
+            result.add(new Resource("Res"+i, dimension));
         }
         
         return result;

@@ -3,7 +3,7 @@ package me.bedifferent.cnsim;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConcreteCollectorCounter extends Collector{
+public class ConcreteCollectorCounter implements Collector{
     private Map<String, Double> collector;
     private Event.Type type;
 

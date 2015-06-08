@@ -6,7 +6,7 @@ import javax.swing.event.HyperlinkEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConcreteCollectorHitrate extends Collector{
+public class ConcreteCollectorHitrate implements Collector{
     private Map<String, Hitrate> collector;
     private String resourceName;
 

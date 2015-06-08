@@ -1,5 +1,6 @@
 package me.bedifferent.cnsim;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,19 +8,36 @@ import java.util.Map;
 
 public class DataCollector{
     private List<Collector> collectors;
+    private Map<String, String> properties;
 
-    public DataCollector(){
+    public DataCollector(Map<String, String> properties) {
+    	this.properties = properties;
+    	
         this.collectors = new ArrayList<Collector>();
-        //this.collectors.add(new ConcreteCollectorCounter(Event.Type.HIT));
-        //this.collectors.add(new ConcreteCollectorCounter(Event.Type.MISS));
 
-        this.collectors.add(new ConcreteCollectorHitrate("Res0"));
-        this.collectors.add(new ConcreteCollectorHitrate("Res9"));
-        this.collectors.add(new ConcreteCollectorHitrate("Res99"));
-        this.collectors.add(new ConcreteCollectorHitrate("Res999"));
+        String collectorsArray[] = this.properties.get("collectors").split(",");
+		for(int i=0; i<collectorsArray.length; i++) {
+			String colName = collectorsArray[i].split("#")[0];
+			String colPar = collectorsArray[i].split("#")[1];
+			
+			Class<?> cl;
+			Constructor<?> con;
+			Collector collector;
+			
+			try {
+				cl = Class.forName("me.bedifferent.cnsim." + colName);
+				con = cl.getConstructor(String.class);
+				collector = (Collector) con.newInstance(colPar);
+			}catch(Exception e) {
+				System.out.println("Errore specificazione nome collector");
+				return;
+			}
+			
+			this.collectors.add(collector);
+		}
     }
 
-    public void pushData(Event data){ // TO-DO
+    public void pushData(Event data){
         for(Collector c : this.collectors)
             c.onEvent(data);
     }

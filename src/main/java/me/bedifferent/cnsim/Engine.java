@@ -1,12 +1,15 @@
 package me.bedifferent.cnsim;
 
+import java.util.Map;
 import java.util.Random;
 
 public class Engine{
     private ResultsCollector rescol;
-
-    public Engine(){
+    private Map<String, String> properties;
+    
+    public Engine(Map<String, String> properties){
         rescol = new ResultsCollector();
+        this.properties = properties;
     }
 
     public void run(int x, int s){
@@ -20,7 +23,7 @@ public class Engine{
         try{
             for(int i=0; i<x; i++){
                 System.out.println("Experiment number: "+(i+1)+". Seed = "+seeds[i]);
-                threads[i] = new Experiment(seeds[i], this.rescol);
+                threads[i] = new Experiment(seeds[i], this.rescol, this.properties);
                 threads[i].start();
             }
 

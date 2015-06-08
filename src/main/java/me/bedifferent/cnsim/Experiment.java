@@ -1,18 +1,22 @@
 package me.bedifferent.cnsim;
 
+import java.util.Map;
+
 public class Experiment extends Thread{
     private int seed = 0;
     private ResultsCollector rescol;
+    private Map<String, String> properties;
 
-    public Experiment(int seed, ResultsCollector rescol){
+    public Experiment(int seed, ResultsCollector rescol, Map<String, String> properties){
         this.seed = seed;
         this.rescol = rescol;
+        this.properties = properties;
     }
 
     public void run(){
-        DataCollector dataCollector = new DataCollector();
-        Network network = new Network();
-        //Random rand = new Random(seed);
+        DataCollector dataCollector = new DataCollector(this.properties);
+        Network network = new Network(this.properties);
+
         RngStream rand = new RngStream();
         rand.setSeed(new long[]{seed, 12345, 12345, 12345, 12345, 12345});
 
@@ -20,8 +24,14 @@ public class Experiment extends Thread{
         
         // setup the memory
         ResourceFactory rf = ResourceFactory.getInstance();
-        //n.setMemory(rf.getResourcesFromFile("~/resources.txt"));
-        network.setMemory(rf.getFakeResources());
+        if(this.properties.get("resource_file").equals("dummy")) {
+        	int number = Integer.parseInt(this.properties.get("resource_number"));
+        	int dimension = Integer.parseInt(this.properties.get("resource_dimension"));
+        	network.setMemory(rf.getFakeResources(number, dimension));
+        } else {
+        	network.setMemory(rf.getResourcesFromFile(this.properties.get("resource_file")));
+        }
+        
         network.setDataCollector(dataCollector);
         
         Client c = network.getClient();
