@@ -8,7 +8,7 @@ public class Engine{
     private Map<String, String> properties;
     
     public Engine(Map<String, String> properties){
-        rescol = new ResultsCollector();
+        rescol = new ResultsCollector(properties);
         this.properties = properties;
     }
 
